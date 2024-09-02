@@ -1,0 +1,379 @@
+header {
+  height: 12vh;
+  line-height: 10vh;
+  background-image: linear-gradient(
+    to right bottom,
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.6),
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0)
+  );
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+
+.logo img {
+  width: 60px;
+  height: 60px;
+  padding-top: 15px;
+  margin-right: 30px;
+}
+
+header a {
+  color: white;
+  margin-left: 30px;
+}
+
+header i {
+  quotes: 40px;
+  height: 40px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 50%;
+  border: 2px solid white;
+  margin: 0 10px;
+}
+
+header button {
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px;
+  margin-left: 10px;
+}
+
+.toggle {
+  display: none;
+}
+
+.toggleSide {
+  position: absolute;
+  left: 30%;
+  top: 20%;
+  padding: 0;
+  z-index: 99;
+  background-color: #e9232d;
+}
+
+.account i,
+.account button {
+  cursor: pointer;
+}
+
+.account {
+  display: flex;
+}
+
+.searchBar {
+  display: none;
+  background-color: white;
+  height: 60px;
+  min-width: 20%;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  position: absolute;
+  /* text-align: center; */
+  top: 12vh;
+  left: 70%;
+  overflow: hidden;
+}
+
+.searchBarMobile {
+  background-color: white;
+  height: 30px;
+  width: 90%;
+  overflow: hidden;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  position: relative;
+  display: flex;
+  margin: 20px auto;
+  margin-top: 50px;
+}
+
+.searchBar input,
+.searchBarMobile input {
+  height: 100%;
+  width: 85%;
+  padding: 0 20px;
+  border: none;
+  position: absolute;
+  outline: none;
+  font-size: 22px;
+  color: rgb(44, 44, 44);
+}
+
+.searchBarMobile input {
+  font-size: 14px;
+  padding: 0 10px;
+}
+
+.searchBar i,
+.searchBarMobile i {
+  color: black;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 10px;
+  font-size: 20px;
+  background-color: rgb(236, 233, 221);
+}
+
+.searchBarMobile i {
+  font-size: 14px;
+  top: -3px;
+  background-color: white;
+  right: -12px;
+}
+
+.active {
+  color: #e9232d;
+}
+
+.dropDownBoxMovies,
+.dropDownBoxSeries {
+  background-color: #e9232d;
+  width: 150px;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 10px;
+  position: absolute;
+  top: 11vh;
+  display: none;
+}
+
+.dropDownBoxMovies a{
+  margin: 0;
+}
+
+.dropDownBoxSeries a{
+  margin: 0;
+}
+
+.dropDownBoxMovies li,
+.dropDownBoxSeries li {
+  cursor: pointer;
+}
+
+.dropDownMobile{
+  margin: 10px 50px;
+  display: none;
+  height: 70px;
+}
+
+.dropDownMobile a{
+  margin: 0;
+  /* height: 30px; */
+}
+
+.dropDownMobile li{
+  font-size: 12px;
+}
+
+.visible {
+  display: block;
+}
+
+.dropDownBoxSeries {
+  left: 22%;
+}
+
+.dropDownBoxMovies {
+  left: 27%;
+}
+
+@media only screen and (max-width: 1650px) {
+  .dropDownBoxMovies {
+    left: 20%;
+  }
+  .dropDownBoxSeries {
+    left: 16%;
+  }
+}
+
+@media only screen and (max-width: 1350px) {
+  .dropDownBoxMovies {
+    left: 26%;
+  }
+  .dropDownBoxSeries {
+    left: 20%;
+  }
+}
+
+@media only screen and (max-width: 1080px) {
+  .account button {
+    display: none;
+  }
+  .dropDownBoxMovies {
+    left: 28%;
+  }
+  .dropDownBoxSeries {
+    left: 21%;
+  }
+}
+
+@media only screen and (max-width: 920px) {
+  header nav .flexSB,
+  .account {
+    display: none;
+  }
+
+  .toggle {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 20px;
+    margin: auto;
+    cursor: pointer;
+    background: none;
+  }
+
+  .navMenuList {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding-top: 30px;
+    background-color: #e9232d;
+    width: 40%;
+    height: 100vh;
+    z-index: 99;
+  }
+
+  .navMenuList a{
+    min-height: 40px;
+  }
+
+  .navMenuList li{
+    /* margin: -20px 0 5px -25px; */
+    height: 40px;
+  }
+
+  .navMenuList ul{
+    margin-top: -35px;
+    margin-bottom: 20px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .navMenuList {
+    width: 80%;
+  }
+  .toggleSide {
+    left: 60%;
+  }
+  header {
+    position: sticky;
+    padding-bottom: 70px;
+    background: none;
+    background-color: #0c0c0cb2;
+  }
+}
+
+@media only screen and (min-width: 1700px) {
+  header {
+    height: 11vh;
+  }
+  .searchBar {
+    top: 11vh;
+    left: 65%;
+  }
+  .dropDownBoxMovies,
+  .dropDownBoxSeries {
+    top: 11vh;
+  }
+}
+
+@media only screen and (min-width: 1900px) {
+  header {
+    margin: 0 10%;
+    height: 10vh;
+    line-height: 9vh;
+    width: 90%;
+  }
+  .searchBar {
+    top: 10vh;
+    left: 60%;
+  }
+  .dropDownBoxMovies,
+  .dropDownBoxSeries {
+    top: 10vh;
+  }
+  .dropDownBoxMovies {
+    left: 32%;
+  }
+  .dropDownBoxSeries {
+    left: 27%;
+  }
+}
+
+@media only screen and (min-width: 2600px) {
+  header {
+    margin: 0 12.5%;
+    width: 75%;
+    height: 9vh;
+    line-height: 9vh;
+  }
+  .searchBar {
+    top: 9vh;
+    left: 55%;
+  }
+  .dropDownBoxMovies,
+  .dropDownBoxSeries {
+    top: 9vh;
+  }
+  .dropDownBoxMovies {
+    left: 38%;
+  }
+  .dropDownBoxSeries {
+    left: 34%;
+  }
+}
+
+@media only screen and (min-width: 3500px) {
+  header {
+    margin: 0 17.5%;
+    height: 8vh;
+    line-height: 8vh;
+    width: 65%;
+  }
+  .searchBar {
+    top: 8vh;
+  }
+  .dropDownBoxMovies,
+  .dropDownBoxSeries {
+    top: 8vh;
+  }
+  .container.flexSB {
+    margin-left: 30%;
+  }
+  .dropDownBoxMovies {
+    left: 40%;
+  }
+  .dropDownBoxSeries {
+    left: 37%;
+  }
+}
+
+@media only screen and (min-width: 4000px) {
+  header {
+    margin: 0 25%;
+    width: 50%;
+    height: 7vh;
+    line-height: 7vh;
+  }
+  .searchBar {
+    top: 7vh;
+  }
+  .dropDownBoxMovies,
+  .dropDownBoxSeries {
+    top: 7vh;
+  }
+}

@@ -1,0 +1,15 @@
+.playing{
+    margin-top: 100px;
+}
+
+.playing h1{
+  font-weight: 500;
+  margin-left: 100px;
+  margin-bottom: -50px;
+}
+
+@media only screen and (max-width: 768px){
+    .playing{
+        display: none;
+    }
+}

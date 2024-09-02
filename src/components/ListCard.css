@@ -1,0 +1,160 @@
+.cardContainer {
+  position: relative;
+  width: 300px;
+  height: 650px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 1)
+  );
+  color: black;
+}
+
+.cardContainer a {
+  color: rgb(0, 0, 156);
+}
+
+.cardContainer a:visited {
+  color: rgb(0, 0, 156);
+}
+
+.overlay {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay i {
+  font-size: 64px;
+  transition: opacity 0.5s ease;
+  color: #e9232d;
+}
+
+.cardContainer:hover .overlay {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.imgContainer {
+  width: 100%;
+  height: 60%;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.imgContainer img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  object-fit: fill;
+}
+
+.textContainer {
+  padding: 10px;
+  margin: 10px auto;
+  width: 90%;
+}
+
+.headingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headingContainer h3 {
+  font-weight: 600;
+  font-size: 22px;
+}
+
+.ratingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+  color: #e9232d;
+}
+.ratingContainer h4 {
+  font-weight: 500;
+}
+
+.otherDetails {
+  display: flex;
+  margin-top: 50px;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.otherDetails h4 {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.otherDetails h5 {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 10px;
+  color: #e9232d;
+}
+
+@media only screen and (max-width: 768px) {
+  .cardContainer {
+    height: 400px;
+  }
+  .textContainer {
+    margin-top: -10px;
+  }
+  .textContainer h3 {
+    font-size: 16px;
+  }
+  .ratingContainer {
+    font-size: 12px;
+  }
+  .otherDetails {
+    margin-top: 20px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .cardContainer {
+    height: 400px;
+  }
+  .textContainer {
+    margin-top: -10px;
+  }
+  .textContainer h3 {
+    font-size: 18px;
+  }
+  .ratingContainer {
+    font-size: 12px;
+  }
+  .otherDetails {
+    margin-top: 20px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .ratingContainer {
+    display: none;
+  }
+  .headingContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .headingContainer h3{
+    text-align: center;
+  }
+  .textContainer {
+    margin-top: -10px;
+  }
+  .otherDetails {
+    margin-top: 10px;
+  }
+}
