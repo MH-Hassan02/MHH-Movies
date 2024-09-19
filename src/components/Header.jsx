@@ -59,7 +59,7 @@ const Header = () => {
   return (
     <>
       <header>
-        <div className="container flexSB">
+        <div className="navContainer flexSB">
           <nav className="flexSB">
             <div className="logo">
               <Link to="/" onClick={() => setPage("Home")}>

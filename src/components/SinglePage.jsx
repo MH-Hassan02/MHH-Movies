@@ -60,8 +60,8 @@ const SinglePage = () => {
                 <iframe
                   src={
                     isMovie
-                      ? `https://vidsrc.cc/embed/movie/${id}`
-                      : `https://vidsrc.cc/embed/tv/${id}`
+                      ? `https://vidsrc.in/embed/movie/${id}`
+                      : `https://vidsrc.in/embed/tv/${id}`
                   }
                   allowFullScreen
                   width="100%"

@@ -5,7 +5,7 @@ footer {
   padding: 50px 20px;
 }
 
-footer .container {
+footer .footContainer {
   display: grid;
   grid-template-columns: 6fr 2fr 2fr;
   grid-gap: 30px;
@@ -74,7 +74,7 @@ footer span {
 }
 
 @media only screen and (max-width: 768px) {
-  footer .container {
+  footer .footContainer {
     grid-template-columns: 10fr 0;
   }
   .box {
@@ -96,5 +96,37 @@ footer span {
   }
   .disclaimerShort {
     display: block;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  footer {
+    margin-left: 15%;
+    margin-right: 15%;
+    width: 70%;
+  }
+}
+
+@media only screen and (min-width: 2600px) {
+  footer {
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 3500px) {
+  footer {
+    margin-left: 33%;
+    margin-right: 33%;
+    width: 34%;
+  }
+}
+
+@media only screen and (min-width: 4000px) {
+  footer {
+    margin-left: 37.5%;
+    margin-right: 37.5%;
+    width: 25%;
   }
 }

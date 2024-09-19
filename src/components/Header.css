@@ -147,11 +147,11 @@ header button {
   display: none;
 }
 
-.dropDownBoxMovies a{
+.dropDownBoxMovies a {
   margin: 0;
 }
 
-.dropDownBoxSeries a{
+.dropDownBoxSeries a {
   margin: 0;
 }
 
@@ -160,18 +160,18 @@ header button {
   cursor: pointer;
 }
 
-.dropDownMobile{
+.dropDownMobile {
   margin: 10px 50px;
   display: none;
   height: 70px;
 }
 
-.dropDownMobile a{
+.dropDownMobile a {
   margin: 0;
   /* height: 30px; */
 }
 
-.dropDownMobile li{
+.dropDownMobile li {
   font-size: 12px;
 }
 
@@ -247,16 +247,16 @@ header button {
     z-index: 99;
   }
 
-  .navMenuList a{
+  .navMenuList a {
     min-height: 40px;
   }
 
-  .navMenuList li{
+  .navMenuList li {
     /* margin: -20px 0 5px -25px; */
     height: 40px;
   }
 
-  .navMenuList ul{
+  .navMenuList ul {
     margin-top: -35px;
     margin-bottom: 20px;
   }
@@ -277,7 +277,7 @@ header button {
   }
 }
 
-@media only screen and (min-width: 1700px) {
+/* @media only screen and (min-width: 1700px) {
   header {
     height: 11vh;
   }
@@ -289,14 +289,14 @@ header button {
   .dropDownBoxSeries {
     top: 11vh;
   }
-}
+} */
 
-@media only screen and (min-width: 1900px) {
+@media only screen and (min-width: 2000px) {
   header {
-    margin: 0 10%;
-    height: 10vh;
+    margin: 0 15%;
+    height: 8vh;
     line-height: 9vh;
-    width: 90%;
+    width: 70%;
   }
   .searchBar {
     top: 10vh;
@@ -316,9 +316,9 @@ header button {
 
 @media only screen and (min-width: 2600px) {
   header {
-    margin: 0 12.5%;
-    width: 75%;
-    height: 9vh;
+    margin: 0 25%;
+    width: 50%;
+    height: 7vh;
     line-height: 9vh;
   }
   .searchBar {
@@ -339,10 +339,10 @@ header button {
 
 @media only screen and (min-width: 3500px) {
   header {
-    margin: 0 17.5%;
-    height: 8vh;
+    margin: 0 33%;
+    height: 6vh;
     line-height: 8vh;
-    width: 65%;
+    width: 34%;
   }
   .searchBar {
     top: 8vh;
@@ -364,9 +364,9 @@ header button {
 
 @media only screen and (min-width: 4000px) {
   header {
-    margin: 0 25%;
-    width: 50%;
-    height: 7vh;
+    margin: 0 37.5%;
+    width: 25%;
+    height: 5vh;
     line-height: 7vh;
   }
   .searchBar {

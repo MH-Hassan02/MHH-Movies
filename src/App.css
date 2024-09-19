@@ -26,7 +26,7 @@ ul {
   align-items: center;
 }
 
-.container {
+.navContainer {
   max-width: 90%;
   margin: auto;
 }
@@ -72,7 +72,8 @@ p {
 
 .upcome {
   position: relative;
-  margin-top: 100px;
+  margin: 100px auto 0 auto;
+  width: 90%;
 }
 
 .heading h1 {
@@ -160,7 +161,7 @@ p {
   margin-right: 15px;
 }
 
-.container .content {
+.navContainer .content {
   position: relative;
   width: 90%;
   margin: 20px auto;
@@ -173,7 +174,7 @@ p {
 }
 
 @media only screen and (max-width: 450px) {
-  .container .content {
+  .navContainer .content {
     width: 100%;
   }
 
@@ -185,7 +186,7 @@ p {
     font-size: 20px;
   }
 
-  .container {
+  .navContainer {
     width: 100%;
   }
   .controlBtn .next {
@@ -201,19 +202,11 @@ p {
   }
 }
 
-@media only screen and (min-width: 1700px) {
+@media only screen and (min-width: 2000px) {
   .container {
-    margin-left: 12.5%;
-    margin-right: 12.5%;
-    width: 75%;
-  }
-}
-
-@media only screen and (min-width: 1900px) {
-  .container {
-    margin-left: 17.5%;
-    margin-right: 17.5%;
-    width: 65%;
+    margin-left: 15%;
+    margin-right: 15%;
+    width: 70%;
   }
 }
 
@@ -238,6 +231,5 @@ p {
     margin-left: 37.5%;
     margin-right: 37.5%;
     width: 25%;
-    /* height: 60%; */
   }
 }
