@@ -23,8 +23,9 @@ const SinglePage = () => {
 
   useEffect(() => {
     const getMovieDetails = async () => {
-      const recommendedMoviesData = await fetchData();
-      setRecommendedMovies(recommendedMoviesData);
+      const recommendedMovies = await fetchData();
+      setRecommendedMovies(recommendedMovies);
+      console.log("recommendedMovies", recommendedMovies)
 
       const API_KEY = import.meta.env.VITE_API_KEY;
       const url = isMovie
@@ -48,6 +49,7 @@ const SinglePage = () => {
         {item ? (
           <>
             <section className="singlePage">
+              <div className="container">
               <div className="singleHeading">
                 <h1>{isMovie ? item.title : item.name}</h1>
                 <span>
@@ -56,7 +58,6 @@ const SinglePage = () => {
                 </span>
                 <span> HD </span>
               </div>
-              <div className="container">
                 <iframe
                   src={
                     isMovie

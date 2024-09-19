@@ -16,6 +16,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  margin-bottom: 50px;
 }
 
 .singleHeading h1 {
@@ -35,7 +36,7 @@ body {
 
 .singlePage .container {
   max-width: 80%;
-  margin: 100px auto;
+  margin: 0px auto;
 }
 
 iframe {
