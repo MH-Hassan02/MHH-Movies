@@ -167,7 +167,7 @@ p {
   margin: 20px auto;
 }
 
-.loaderImg{
+.loaderImg {
   display: flex;
   justify-content: center;
   margin: 50px auto;
@@ -182,7 +182,7 @@ p {
     font-size: 24px;
   }
 
-  .heading a{
+  .heading a {
     font-size: 20px;
   }
 
@@ -195,7 +195,7 @@ p {
   .controlBtn .prev {
     display: none;
   }
-  .movieBox{
+  .movieBox {
     border-radius: 20px;
     overflow: hidden;
     width: 200px;
@@ -203,7 +203,7 @@ p {
 }
 
 @media only screen and (min-width: 2000px) {
-  .container {
+  .container, .mainContainer, .homeContainer {
     margin-left: 15%;
     margin-right: 15%;
     width: 70%;
@@ -211,7 +211,7 @@ p {
 }
 
 @media only screen and (min-width: 2700px) {
-  .container {
+  .container, .mainContainer, .homeContainer {
     margin-left: 25%;
     margin-right: 25%;
     width: 50%;
@@ -219,7 +219,7 @@ p {
 }
 
 @media only screen and (min-width: 4000px) {
-  .container {
+  .container, .mainContainer, .homeContainer {
     margin-left: 33%;
     margin-right: 33%;
     width: 34%;
@@ -227,7 +227,7 @@ p {
 }
 
 @media only screen and (min-width: 4500px) {
-  .container {
+  .container, .mainContainer, .homeContainer {
     margin-left: 37.5%;
     margin-right: 37.5%;
     width: 25%;

@@ -180,37 +180,46 @@ header button {
 }
 
 .dropDownBoxSeries {
-  left: 22%;
+  left: 15%;
 }
 
 .dropDownBoxMovies {
-  left: 27%;
+  left: 20%;
 }
 
 @media only screen and (max-width: 1650px) {
+  .searchBar{
+    left: 65%;
+  }
   .dropDownBoxMovies {
-    left: 20%;
+    left: 22%;
   }
   .dropDownBoxSeries {
-    left: 16%;
+    left: 17%;
   }
 }
 
-@media only screen and (max-width: 1350px) {
+@media only screen and (max-width: 1370px) {
   .dropDownBoxMovies {
-    left: 26%;
+    left: 24%;
+  }
+  .searchBar{
+    left: 63%;
   }
   .dropDownBoxSeries {
-    left: 20%;
+    left: 18%;
   }
 }
 
-@media only screen and (max-width: 1080px) {
+@media only screen and (max-width: 1180px) {
   .account button {
     display: none;
   }
+  .searchBar{
+    left: 70%;
+  }
   .dropDownBoxMovies {
-    left: 28%;
+    left: 30%;
   }
   .dropDownBoxSeries {
     left: 21%;
@@ -277,20 +286,6 @@ header button {
   }
 }
 
-/* @media only screen and (min-width: 1700px) {
-  header {
-    height: 11vh;
-  }
-  .searchBar {
-    top: 11vh;
-    left: 65%;
-  }
-  .dropDownBoxMovies,
-  .dropDownBoxSeries {
-    top: 11vh;
-  }
-} */
-
 @media only screen and (min-width: 2000px) {
   header {
     margin: 0 15%;
@@ -300,21 +295,21 @@ header button {
   }
   .searchBar {
     top: 10vh;
-    left: 60%;
+    left: 65%;
   }
   .dropDownBoxMovies,
   .dropDownBoxSeries {
     top: 10vh;
   }
   .dropDownBoxMovies {
-    left: 32%;
+    left: 22.5%;
   }
   .dropDownBoxSeries {
-    left: 27%;
+    left: 17.5%;
   }
 }
 
-@media only screen and (min-width: 2600px) {
+@media only screen and (min-width: 2700px) {
   header {
     margin: 0 25%;
     width: 50%;
@@ -323,21 +318,20 @@ header button {
   }
   .searchBar {
     top: 9vh;
-    left: 55%;
   }
   .dropDownBoxMovies,
   .dropDownBoxSeries {
     top: 9vh;
   }
   .dropDownBoxMovies {
-    left: 38%;
+    left: 25%;
   }
   .dropDownBoxSeries {
-    left: 34%;
+    left: 19%;
   }
 }
 
-@media only screen and (min-width: 3500px) {
+@media only screen and (min-width: 4000px) {
   header {
     margin: 0 33%;
     height: 6vh;
@@ -355,14 +349,14 @@ header button {
     margin-left: 30%;
   }
   .dropDownBoxMovies {
-    left: 40%;
+    left: 25%;
   }
   .dropDownBoxSeries {
-    left: 37%;
+    left: 20%;
   }
 }
 
-@media only screen and (min-width: 4000px) {
+@media only screen and (min-width: 4500px) {
   header {
     margin: 0 37.5%;
     width: 25%;
@@ -370,10 +364,10 @@ header button {
     line-height: 7vh;
   }
   .searchBar {
-    top: 7vh;
+    top: 6vh;
   }
   .dropDownBoxMovies,
   .dropDownBoxSeries {
-    top: 7vh;
+    top: 6vh;
   }
 }

@@ -178,36 +178,3 @@
     margin-top: 40px;
   }
 }
-
-
-@media only screen and (min-width: 2000px) {
-  .homeContainer {
-    margin-left: 17.5%;
-    margin-right: 17.5%;
-    width: 65%;
-  }
-}
-
-@media only screen and (min-width: 2600px) {
-  .homeContainer {
-    margin-left: 25%;
-    margin-right: 25%;
-    width: 50%;
-  }
-}
-
-@media only screen and (min-width: 3500px) {
-  .homeContainer {
-    margin-left: 33%;
-    margin-right: 33%;
-    width: 34%;
-  }
-}
-
-@media only screen and (min-width: 4000px) {
-  .homeContainer {
-    margin-left: 37.5%;
-    margin-right: 37.5%;
-    width: 25%;
-  }
-}
