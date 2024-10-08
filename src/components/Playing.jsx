@@ -5,8 +5,7 @@ import './playing.css'
 const Playing = ({playingItems}) => {
   return (
     <>
-        <div className="playing container">
-            <h1>Playing Now</h1>
+        <div className="playing">
             <Home playingItems={playingItems}/>
         </div>
     </>

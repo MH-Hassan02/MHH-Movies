@@ -45,31 +45,32 @@ const Home = ({ items, playingItems }) => {
       [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
-  };  
+  };
 
-  const shuffledItems = items ? shuffleArray([...items]).slice(0, 5) : []
+  const shuffledItems = items ? shuffleArray([...items]).slice(0, 5) : [];
 
   return (
     <>
-    <div className="homeContainer" >
-      {items && items.length > 0 && (
-        <>
-          {shuffledItems.map((item) => (
-            <HomeCard key={item.id} item={item} carousel={false} />
-          ))}
-        </>
-      )}
-      {playingItems && playingItems.length > 0 && (
-        <div className="sliderContainer">
-          <Slider {...settings}>
-            {playingItems.map((item) => (
-              <HomeCard key={item.id} item={item} carousel={true} />
+      <div className="homeContainer">
+        {items && items.length > 0 && (
+          <>
+            {shuffledItems.map((item) => (
+              <HomeCard key={item.id} item={item} carousel={false} />
             ))}
-          </Slider>
-        </div>
-      )}
-    </div>
-  </>
+          </>
+        )}
+        {playingItems && playingItems.length > 0 && (
+          <div className="sliderContainerMain">
+            <h2>Playing Now</h2>
+              <Slider {...settings}>
+                {playingItems.map((item) => (
+                  <HomeCard key={item.id} item={item} carousel={true} />
+                ))}
+              </Slider>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

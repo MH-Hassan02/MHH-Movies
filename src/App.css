@@ -203,7 +203,7 @@ p {
 }
 
 @media only screen and (min-width: 2000px) {
-  .container, .mainContainer, .homeContainer {
+  .container, .mainContainer, .homeContainer, footer {
     margin-left: 15%;
     margin-right: 15%;
     width: 70%;
@@ -211,7 +211,7 @@ p {
 }
 
 @media only screen and (min-width: 2700px) {
-  .container, .mainContainer, .homeContainer {
+  .container, .mainContainer, .homeContainer, footer {
     margin-left: 25%;
     margin-right: 25%;
     width: 50%;
@@ -219,7 +219,7 @@ p {
 }
 
 @media only screen and (min-width: 4000px) {
-  .container, .mainContainer, .homeContainer {
+  .container, .mainContainer, .homeContainer, footer {
     margin-left: 33%;
     margin-right: 33%;
     width: 34%;
@@ -227,7 +227,7 @@ p {
 }
 
 @media only screen and (min-width: 4500px) {
-  .container, .mainContainer, .homeContainer {
+  .container, .mainContainer, .homeContainer, footer {
     margin-left: 37.5%;
     margin-right: 37.5%;
     width: 25%;

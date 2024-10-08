@@ -137,21 +137,38 @@
   margin-top: 100px;
 }
 
-.sliderContainer {
+.sliderContainerMain {
   position: relative;
-  height: 700px;
-  width: 80%;
+  height: 100%;
+  width: 90%;
   margin: 100px auto;
   border-radius: 15px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
-.sliderContainer .content {
+.sliderContainerMain h2 {
+  font-size: 32px;
+  font-weight: 500;
+  position: relative;
+}
+
+.sliderContainer{
+  width: 90%;
+}
+
+.sliderContainerMain .content {
   height: 700px;
 }
 
 .sliderContainer ul {
   position: absolute;
+}
+
+.sliderContainerMain .content h1{
+  margin: 0;
 }
 
 @media (max-width: 576px) {
