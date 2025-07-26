@@ -63,28 +63,41 @@ header button {
   background-color: #e9232d;
 }
 
-.account i,
-.account button {
+.searchContainer i {
   cursor: pointer;
 }
 
-.account {
+.searchContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchInput {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  height: 40px;
+  border: none;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 0 0 0 20px;
+}
+
+.searchInputVisible{
   display: flex;
 }
 
-.searchBar {
-  display: none;
-  background-color: white;
-  height: 60px;
-  min-width: 20%;
+.searchInput input{
   border: none;
-  border-radius: 20px;
   outline: none;
-  position: absolute;
-  /* text-align: center; */
-  top: 12vh;
-  left: 70%;
-  overflow: hidden;
+  font-size: 16px;
+}
+
+.searchInput i{
+  color: black;
+  cursor: pointer;
 }
 
 .searchBarMobile {
@@ -101,7 +114,7 @@ header button {
   margin-top: 50px;
 }
 
-.searchBar input,
+/* .searchContainer input, */
 .searchBarMobile input {
   height: 100%;
   width: 85%;
@@ -118,7 +131,6 @@ header button {
   padding: 0 10px;
 }
 
-.searchBar i,
 .searchBarMobile i {
   color: black;
   cursor: pointer;
@@ -208,21 +220,18 @@ header button {
   .dropDownBoxMovies {
     left: 24%;
   }
-  .searchBar {
+  /* .searchBar {
     left: 63%;
-  }
+  } */
   .dropDownBoxSeries {
     left: 18%;
   }
 }
 
 @media only screen and (max-width: 1180px) {
-  .account button {
-    display: none;
-  }
-  .searchBar {
+  /* .searchBar {
     left: 70%;
-  }
+  } */
   .dropDownBoxMovies {
     left: 30%;
   }
@@ -231,9 +240,8 @@ header button {
   }
 }
 
-@media only screen and (max-width: 920px) {
-  header nav .flexSB,
-  .account {
+@media only screen and (max-width: 1024px) {
+  header nav .flexSB, .searchContainer{
     display: none;
   }
 
@@ -297,10 +305,10 @@ header button {
     line-height: 9vh;
     width: 70%;
   }
-  .searchBar {
+  /* .searchBar {
     top: 10vh;
     left: 65%;
-  }
+  } */
   .dropDownBoxMovies,
   .dropDownBoxSeries {
     top: 10vh;
@@ -320,9 +328,6 @@ header button {
     height: 7vh;
     line-height: 9vh;
   }
-  .searchBar {
-    top: 9vh;
-  }
   .dropDownBoxMovies,
   .dropDownBoxSeries {
     top: 9vh;
@@ -341,9 +346,6 @@ header button {
     height: 6vh;
     line-height: 8vh;
     width: 34%;
-  }
-  .searchBar {
-    top: 8vh;
   }
   .dropDownBoxMovies,
   .dropDownBoxSeries {
@@ -366,9 +368,6 @@ header button {
     width: 25%;
     height: 5vh;
     line-height: 7vh;
-  }
-  .searchBar {
-    top: 6vh;
   }
   .dropDownBoxMovies,
   .dropDownBoxSeries {

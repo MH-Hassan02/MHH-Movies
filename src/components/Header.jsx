@@ -4,12 +4,12 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { fetchSearchedMovies } from "../../movies";
-import Upcoming from "./Upcoming";
 import logo from "../../images/logo.jpg";
 
 const Header = () => {
   const [Mobile, setMobile] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [showSearchBar, setShowSearchBar] = useState(false);
   const navigate = useNavigate();
   const [page, setPage] = useState("Home");
   const [mouseHoverMovies, setMouseHoverMovies] = useState(false);
@@ -17,19 +17,10 @@ const Header = () => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
-  const toggleSearchBar = () => {
-    const searchBar = document.querySelector(".searchBar");
-    searchBar.classList.toggle("visible");
-    // setSearchValue("");
-  };
-
   const getSearchValue = async () => {
     const moviesData = await fetchSearchedMovies(1, searchValue);
-    toggleSearchBar();
     if (Mobile) {
       setMobile(!Mobile);
-      const searchBar = document.querySelector(".searchBar");
-      searchBar.classList.toggle("visible");
     }
     navigate(`/moviesList/searched/${searchValue}`, { state: { moviesData } });
   };
@@ -69,9 +60,7 @@ const Header = () => {
               </Link>
             </div>
 
-            <ul
-              className={Mobile ? "navMenuList" : "flexSB"}
-            >
+            <ul className={Mobile ? "navMenuList" : "flexSB"}>
               {Mobile ? (
                 <div className="searchBarMobile">
                   <input
@@ -110,8 +99,8 @@ const Header = () => {
                   }
                 }}
                 className={page === "Series" && !Mobile ? "active" : ""}
-                onMouseEnter={!Mobile && showDropDownSeries}
-                onMouseLeave={!Mobile && removeDropDownSeries}
+                onMouseEnter={!Mobile ? showDropDownSeries : undefined}
+                onMouseLeave={!Mobile ? removeDropDownSeries : undefined}
               >
                 <span>Series</span>
 
@@ -136,8 +125,8 @@ const Header = () => {
                   }
                 }}
                 className={page === "Movies" && !Mobile ? "active" : ""}
-                onMouseEnter={!Mobile && showDropDownMovies}
-                onMouseLeave={!Mobile && removeDropDownMovies}
+                onMouseEnter={!Mobile ? showDropDownMovies : undefined}
+                onMouseLeave={!Mobile ? removeDropDownMovies : undefined}
               >
                 <span>Movies</span>
 
@@ -250,25 +239,28 @@ const Header = () => {
             </ul>
           </div>
 
-          <div className="searchBar">
-            <input
-              type="text"
-              value={searchValue}
-              onChange={handleSearchInputChange}
-              onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                  getSearchValue();
-                }
-              }}
-            />
-            <i className="fa fa-search" onClick={getSearchValue}></i>
-          </div>
-
-          <div className="account">
-            <i onClick={toggleSearchBar} className="fa fa-search"></i>
-            <i className="fa fa-bell"></i>
-            <i className="fa fa-user"></i>
-            <button>Subscribe Now</button>
+          <div className="searchContainer">
+            <i
+              onClick={() => setShowSearchBar(!showSearchBar)}
+              className={showSearchBar ? `fa fa-search` : `fa fa-times`}
+            ></i>
+            <div
+              className={`searchInput ${
+                !showSearchBar ? "searchInputVisible" : ""
+              }`}
+            >
+              <input
+                type="text"
+                value={searchValue}
+                onChange={handleSearchInputChange}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    getSearchValue();
+                  }
+                }}
+              />
+              <i className="fa fa-search" onClick={getSearchValue}></i>
+            </div>
           </div>
         </div>
       </header>
