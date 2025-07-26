@@ -9,7 +9,7 @@ import logo from "../../images/logo.jpg";
 const Header = () => {
   const [Mobile, setMobile] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  const [showSearchBar, setShowSearchBar] = useState(false);
+  const [showSearchBar, setShowSearchBar] = useState(true);
   const navigate = useNavigate();
   const [page, setPage] = useState("Home");
   const [mouseHoverMovies, setMouseHoverMovies] = useState(false);
