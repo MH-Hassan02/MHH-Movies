@@ -9,7 +9,7 @@ import logo from "../../images/logo.jpg";
 const Header = () => {
   const [Mobile, setMobile] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  const [showSearchBar, setShowSearchBar] = useState(true);
+  const [showSearchBar, setShowSearchBar] = useState(false);
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
