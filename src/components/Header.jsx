@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./Header.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import AOS from "aos";
@@ -9,7 +9,10 @@ import logo from "../../images/logo.jpg";
 const Header = () => {
   const [Mobile, setMobile] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  const [showSearchBar, setShowSearchBar] = useState(false);
+  const [showSearchBar, setShowSearchBar] = useState(true);
+  const [searchSuggestions, setSearchSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
   const navigate = useNavigate();
   const [page, setPage] = useState("Home");
   const [mouseHoverMovies, setMouseHoverMovies] = useState(false);
@@ -17,17 +20,75 @@ const Header = () => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
+  // Debounced search function
+  const debouncedSearch = useCallback(
+    (() => {
+      let timeoutId;
+      return (query) => {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(async () => {
+          if (query.trim().length >= 2) {
+            setIsSearching(true);
+            try {
+              const moviesData = await fetchSearchedMovies(1, query);
+              const limitedSuggestions = moviesData.slice(0, 5);
+              setSearchSuggestions(limitedSuggestions);
+              setShowSuggestions(true);
+            } catch (error) {
+              console.error("Error fetching suggestions:", error);
+              setSearchSuggestions([]);
+            } finally {
+              setIsSearching(false);
+            }
+          } else {
+            setSearchSuggestions([]);
+            setShowSuggestions(false);
+          }
+        }, 300);
+      };
+    })(),
+    []
+  );
+
   const getSearchValue = async () => {
     const moviesData = await fetchSearchedMovies(1, searchValue);
     if (Mobile) {
       setMobile(!Mobile);
     }
+    setShowSuggestions(false);
     navigate(`/moviesList/searched/${searchValue}`, { state: { moviesData } });
   };
 
   const handleSearchInputChange = (e) => {
-    setSearchValue(e.target.value);
+    const value = e.target.value;
+    setSearchValue(value);
+    debouncedSearch(value);
   };
+
+  const handleSuggestionClick = (suggestion) => {
+    setSearchValue(suggestion.title || suggestion.name);
+    setShowSuggestions(false);
+    navigate(`/movies/${suggestion.id}/${suggestion.title || suggestion.name}`);
+  };
+
+  const handleSearchContainerClick = () => {
+    setShowSuggestions(false);
+  };
+
+  // Close suggestions when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const searchContainer = document.querySelector('.searchContainer');
+      if (searchContainer && !searchContainer.contains(event.target)) {
+        setShowSuggestions(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const showDropDownMovies = async () => {
     setMouseHoverMovies(true);
@@ -72,8 +133,59 @@ const Header = () => {
                         getSearchValue();
                       }
                     }}
+                    placeholder="Search movies and series..."
                   />
                   <i className="fa fa-search" onClick={getSearchValue}></i>
+                  
+                  {/* Mobile Search Suggestions */}
+                  {showSuggestions && (
+                    <div className="searchSuggestionsMobile">
+                      {isSearching ? (
+                        <div className="searchingIndicator">
+                          <i className="fa fa-spinner fa-spin"></i>
+                          <span>Searching...</span>
+                        </div>
+                      ) : searchSuggestions.length > 0 ? (
+                        <div className="suggestionsList">
+                          {searchSuggestions.map((suggestion) => (
+                            <div
+                              key={suggestion.id}
+                              className="suggestionItem"
+                              onClick={() => handleSuggestionClick(suggestion)}
+                            >
+                              <div className="suggestionContent">
+                                <div className="suggestionImage">
+                                  <img
+                                    src={`https://image.tmdb.org/t/p/w92${suggestion.poster_path}`}
+                                    alt={suggestion.title || suggestion.name}
+                                    onError={(e) => {
+                                      e.target.src = 'https://via.placeholder.com/92x138?text=No+Image';
+                                    }}
+                                  />
+                                </div>
+                                <div className="suggestionDetails">
+                                  <h4>{suggestion.title || suggestion.name}</h4>
+                                  <div className="suggestionMeta">
+                                    <span className="suggestionYear">
+                                      {suggestion.release_date?.split('-')[0] || suggestion.first_air_date?.split('-')[0] || 'N/A'}
+                                    </span>
+                                    <span className="suggestionRating">
+                                      <i className="fa fa-star"></i>
+                                      {suggestion.vote_average?.toFixed(1) || 'N/A'}
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ) : searchValue.trim().length >= 2 ? (
+                        <div className="noResults">
+                          <span>No results found</span>
+                        </div>
+                      ) : null}
+                    </div>
+                  )}
                 </div>
               ) : null}
 
@@ -239,7 +351,7 @@ const Header = () => {
             </ul>
           </div>
 
-          <div className="searchContainer">
+          <div className="searchContainer" onClick={handleSearchContainerClick}>
             <i
               onClick={() => setShowSearchBar(!showSearchBar)}
               className={showSearchBar ? `fa fa-search` : `fa fa-times`}
@@ -258,9 +370,60 @@ const Header = () => {
                     getSearchValue();
                   }
                 }}
+                placeholder="Search movies and series..."
               />
               <i className="fa fa-search" onClick={getSearchValue}></i>
             </div>
+            
+            {/* Search Suggestions Dropdown */}
+            {showSuggestions && (
+              <div className="searchSuggestions">
+                {isSearching ? (
+                  <div className="searchingIndicator">
+                    <i className="fa fa-spinner fa-spin"></i>
+                    <span>Searching...</span>
+                  </div>
+                ) : searchSuggestions.length > 0 ? (
+                  <div className="suggestionsList">
+                    {searchSuggestions.map((suggestion) => (
+                      <div
+                        key={suggestion.id}
+                        className="suggestionItem"
+                        onClick={() => handleSuggestionClick(suggestion)}
+                      >
+                        <div className="suggestionContent">
+                          <div className="suggestionImage">
+                            <img
+                              src={`https://image.tmdb.org/t/p/w92${suggestion.poster_path}`}
+                              alt={suggestion.title || suggestion.name}
+                              onError={(e) => {
+                                e.target.src = 'https://via.placeholder.com/92x138?text=No+Image';
+                              }}
+                            />
+                          </div>
+                          <div className="suggestionDetails">
+                            <h4>{suggestion.title || suggestion.name}</h4>
+                            <div className="suggestionMeta">
+                              <span className="suggestionYear">
+                                {suggestion.release_date?.split('-')[0] || suggestion.first_air_date?.split('-')[0] || 'N/A'}
+                              </span>
+                              <span className="suggestionRating">
+                                <i className="fa fa-star"></i>
+                                {suggestion.vote_average?.toFixed(1) || 'N/A'}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : searchValue.trim().length >= 2 ? (
+                  <div className="noResults">
+                    <span>No results found</span>
+                  </div>
+                ) : null}
+              </div>
+            )}
           </div>
         </div>
       </header>
