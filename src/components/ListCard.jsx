@@ -20,10 +20,10 @@ const ListCard = ({
   return (
     <>
       <div className="cardContainer">
-        <Link to={title ? `/movies/${id}` : `/series/${id}`}>
-          <div className="overlay">
+        <Link to={title ? `/movies/${id}/${title}` : `/series/${id}/${title}`} title={`${title}`}>
+          {/* <div className="overlay">
             <i className="fa fa-play"></i>
-          </div>
+          </div> */}
           <div className="imgContainer">
             <img
               src={`https://image.tmdb.org/t/p/w1280${poster_path}`}

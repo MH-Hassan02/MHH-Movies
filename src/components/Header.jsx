@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Header.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { fetchSearchedMovies } from "../../movies";
@@ -14,11 +14,13 @@ const Header = () => {
   const [page, setPage] = useState("Home");
   const [mouseHoverMovies, setMouseHoverMovies] = useState(false);
   const [mouseHoverSeries, setMouseHoverSeries] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   const toggleSearchBar = () => {
     const searchBar = document.querySelector(".searchBar");
     searchBar.classList.toggle("visible");
-    setSearchValue("");
+    // setSearchValue("");
   };
 
   const getSearchValue = async () => {
@@ -58,7 +60,7 @@ const Header = () => {
 
   return (
     <>
-      <header>
+      <header className={isHomePage ? "" : "header-absolute"}>
         <div className="navContainer flexSB">
           <nav className="flexSB">
             <div className="logo">
@@ -67,7 +69,9 @@ const Header = () => {
               </Link>
             </div>
 
-            <ul className={Mobile ? "navMenuList" : "flexSB"}>
+            <ul
+              className={Mobile ? "navMenuList" : "flexSB"}
+            >
               {Mobile ? (
                 <div className="searchBarMobile">
                   <input

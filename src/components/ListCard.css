@@ -1,23 +1,21 @@
 .cardContainer {
   position: relative;
   width: 300px;
-  height: 650px;
+  height: 550px;
   border-radius: 20px;
   overflow: hidden;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.8),
-    rgba(255, 255, 255, 1)
-  );
+  /* background-color: #e5081336; */
+  background-color: rgba(0, 153, 255, 0.08);
+  /* background-color: rgba(0, 255, 255, 0.11); */
   color: black;
 }
 
 .cardContainer a {
-  color: rgb(0, 0, 156);
+  color: #ffffffbd;
 }
 
 .cardContainer a:visited {
-  color: rgb(0, 0, 156);
+  color: #ffffffbd;
 }
 
 .overlay {
@@ -44,7 +42,7 @@
 
 .imgContainer {
   width: 100%;
-  height: 60%;
+  height: 70%;
   padding: 10px;
   border-radius: 20px;
 }
@@ -58,7 +56,7 @@
 
 .textContainer {
   padding: 10px;
-  margin: 10px auto;
+  margin: 0px auto;
   width: 90%;
 }
 
@@ -66,18 +64,23 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 20px;
 }
 
 .headingContainer h3 {
   font-weight: 600;
-  font-size: 22px;
+  font-size: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .ratingContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 200px;
+  min-width: 100px;
   color: #e9232d;
 }
 .ratingContainer h4 {
@@ -86,7 +89,7 @@
 
 .otherDetails {
   display: flex;
-  margin-top: 50px;
+  margin-top: 20px;
   justify-content: space-around;
   text-align: center;
 }
@@ -105,13 +108,20 @@
 
 @media only screen and (max-width: 768px) {
   .cardContainer {
-    height: 400px;
+    height: 440px;
+  }
+  .imgContainer {
+    height: 70%;
   }
   .textContainer {
-    margin-top: -10px;
+    margin-top: 0;
   }
   .textContainer h3 {
-    font-size: 16px;
+    font-size: 20px;
+    -webkit-line-clamp: 1;
+  }
+  .headingContainer{
+    gap: 0;
   }
   .ratingContainer {
     font-size: 12px;
@@ -125,12 +135,12 @@
   .ratingContainer {
     display: none;
   }
-  .headingContainer{
+  .headingContainer {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .headingContainer h3{
+  .headingContainer h3 {
     text-align: center;
   }
   .textContainer {

@@ -6,7 +6,7 @@ const Pricing = () => {
     <>
       <div className="container">
         <div className="pricingContainer">
-          <p>
+          {/* <p>
             Wait What? Pricing? That's funny. I don't own this damn stuff and I
             defiinitely don't want to be caught making money shadily. Nah call
             me loser or something but I think I will stick to the good ol'
@@ -26,7 +26,8 @@ const Pricing = () => {
             from Alabama then you could also be joined by yo... Nvm. I ain't
             even funny or else she wouldn't have ignored me like that so I guess
             I'll see myself out now.
-          </p>
+          </p> */}
+          <p>Huh</p>
         </div>
       </div>
     </>

@@ -73,6 +73,11 @@ iframe {
   cursor: pointer;
 }
 
+.social a:hover{
+  transform: scale(1.1);
+  transition: 0.2s;
+}
+
 @media only screen and (max-width: 450px) {
   iframe {
     height: 300px;

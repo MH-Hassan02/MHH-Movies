@@ -15,6 +15,11 @@ header {
   z-index: 99;
 }
 
+.header-absolute {
+  position: relative;
+  top: 0;
+}
+
 .logo img {
   width: 60px;
   height: 60px;
@@ -188,7 +193,7 @@ header button {
 }
 
 @media only screen and (max-width: 1650px) {
-  .searchBar{
+  .searchBar {
     left: 65%;
   }
   .dropDownBoxMovies {
@@ -203,7 +208,7 @@ header button {
   .dropDownBoxMovies {
     left: 24%;
   }
-  .searchBar{
+  .searchBar {
     left: 63%;
   }
   .dropDownBoxSeries {
@@ -215,7 +220,7 @@ header button {
   .account button {
     display: none;
   }
-  .searchBar{
+  .searchBar {
     left: 70%;
   }
   .dropDownBoxMovies {
@@ -261,7 +266,6 @@ header button {
   }
 
   .navMenuList li {
-    /* margin: -20px 0 5px -25px; */
     height: 40px;
   }
 
@@ -273,16 +277,16 @@ header button {
 
 @media only screen and (max-width: 450px) {
   .navMenuList {
-    width: 80%;
+    width: 100%;
+  }
+  .navMenuList li {
+    height: 30px;
   }
   .toggleSide {
-    left: 60%;
+    left: 80%;
   }
   header {
-    position: sticky;
     padding-bottom: 70px;
-    background: none;
-    background-color: #0c0c0cb2;
   }
 }
 

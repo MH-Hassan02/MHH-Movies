@@ -3,14 +3,21 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Upcoming from "./Upcoming";
 import "./singlePage.css";
-import loadingAnimation from "../../images/Animation - 1719660715053.gif"
+import loadingAnimation from "../../images/Animation - 1719660715053.gif";
 
 const SinglePage = () => {
   const { id } = useParams();
+  const { title } = useParams();
   const [item, setItem] = useState(null);
   const [recommendedMovies, setRecommendedMovies] = useState([]);
   const isMovie = window.location.pathname.startsWith("/movies");
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (title) {
+      document.title = `MHH Movies | ${title}`;
+    }
+  }, [title]);
 
   const fetchData = async () => {
     const API_KEY = import.meta.env.VITE_API_KEY;
@@ -25,7 +32,6 @@ const SinglePage = () => {
     const getMovieDetails = async () => {
       const recommendedMovies = await fetchData();
       setRecommendedMovies(recommendedMovies);
-      console.log("recommendedMovies", recommendedMovies)
 
       const API_KEY = import.meta.env.VITE_API_KEY;
       const url = isMovie
@@ -50,14 +56,14 @@ const SinglePage = () => {
           <>
             <section className="singlePage">
               <div className="container">
-              <div className="singleHeading">
-                <h1>{isMovie ? item.title : item.name}</h1>
-                <span>
-                  {" "}
-                  | {isMovie ? item.release_date : item.first_air_date} |{" "}
-                </span>
-                <span> HD </span>
-              </div>
+                <div className="singleHeading">
+                  <h1>{isMovie ? item.title : item.name}</h1>
+                  <span>
+                    {" "}
+                    | {isMovie ? item.release_date : item.first_air_date} |{" "}
+                  </span>
+                  <span> HD </span>
+                </div>
                 <iframe
                   src={
                     isMovie
@@ -77,18 +83,21 @@ const SinglePage = () => {
                 </div>
                 <div className="social">
                   <i className="fa fa-share fa-lg"></i>
-                  <img
-                    src="https://img.icons8.com/color/48/000000/facebook-new.png"
-                    alt="Facebook"
-                  />
-                  <img
-                    src="https://img.icons8.com/fluency/48/000000/twitter-circled.png"
-                    alt="Twitter"
-                  />
-                  <img
-                    src="https://img.icons8.com/fluency/48/000000/instagram-new.png"
-                    alt="Instagram"
-                  />
+                  <a
+                    href={`https://wa.me/?text=${encodeURIComponent(
+                      "Check out this movie: " +
+                        title +
+                        " - \n" +
+                        window.location.href
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      src="https://img.icons8.com/color/48/000000/whatsapp.png"
+                      alt="Whatsapp"
+                    />
+                  </a>
                 </div>
               </div>
             </section>

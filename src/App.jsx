@@ -28,8 +28,8 @@ function App() {
         <Header />
           <Routes>
             <Route exact path="/" element={<HomePages />} />
-            <Route exact path="/movies/:id" element={<SinglePage />} />
-            <Route exact path="/series/:id" element={<SinglePage />} />
+            <Route exact path="/movies/:id/:title" element={<SinglePage />} />
+            <Route exact path="/series/:id/:title" element={<SinglePage />} />
             <Route exact path="/moviesList/:type" element={<MoviesPage />} />
             <Route exact path="/SeriesList/:type" element={<MoviesPage />} />
             <Route exact path="/moviesList/searched/:searchValue" element={<MoviesPage />} />
