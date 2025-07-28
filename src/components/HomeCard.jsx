@@ -54,7 +54,7 @@ const HomeCard = ({
           {!carousel && (
             <div className="playButtonContainer">
               <div className="playButton">
-                <Link to={`/movies/${id}`}>
+                <Link to={`/movies/${id}/${title}`}>
                   <button onClick={() => setID(id)}>
                     <div className="img">
                       <img src={`${play}`} alt="" />
