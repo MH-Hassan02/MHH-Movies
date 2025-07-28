@@ -26,7 +26,7 @@ const UpcomingCard = ({
   };
   return (
     <>
-      <Link to={title? `/movies/${id}` : `/series/${id}`}>
+      <Link to={title? `/movies/${id}/${title}` : `/series/${id}/${title}`}>
         <div className="movieBox" onClick={() => setID(id)}>
           <div className="img">
             <img
