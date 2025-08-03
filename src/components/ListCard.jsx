@@ -1,4 +1,3 @@
-import React from "react";
 import "./ListCard.css";
 import { Link } from "react-router-dom";
 
@@ -27,7 +26,7 @@ const ListCard = ({
           <div className="imgContainer">
             <img
               src={`https://image.tmdb.org/t/p/w1280${poster_path}`}
-              alt="Poster"
+              alt={`${title}`}
             />
           </div>
           <div className="textContainer">

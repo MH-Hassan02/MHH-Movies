@@ -26,7 +26,7 @@ const PrevArrow = (props) => {
   );
 };
 
-const Home = ({ items, playingItems }) => {
+const Home = ({ items, upcomingItems }) => {
   var settings = {
     dots: true,
     infinite: true,
@@ -59,11 +59,11 @@ const Home = ({ items, playingItems }) => {
             ))}
           </>
         )}
-        {playingItems && playingItems.length > 0 && (
+        {upcomingItems && upcomingItems.length > 0 && (
           <div className="sliderContainerMain">
-            <h2>Playing Now</h2>
+            <h2>Upcoming Movies</h2>
               <Slider {...settings}>
-                {playingItems.map((item) => (
+                {upcomingItems.map((item) => (
                   <HomeCard key={item.id} item={item} carousel={true} />
                 ))}
               </Slider>

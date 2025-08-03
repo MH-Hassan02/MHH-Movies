@@ -31,7 +31,7 @@ const UpcomingCard = ({
           <div className="img">
             <img
               src={`https://image.tmdb.org/t/p/w1280${poster_path}`}
-              alt=""
+              alt={`${title}`}
             />
           </div>
           <div className="text">

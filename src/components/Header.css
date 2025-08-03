@@ -86,17 +86,17 @@ header button {
   padding: 0 0 0 20px;
 }
 
-.searchInputVisible{
+.searchInputVisible {
   display: flex;
 }
 
-.searchInput input{
+.searchInput input {
   border: none;
   outline: none;
   font-size: 16px;
 }
 
-.searchInput i{
+.searchInput i {
   color: black;
   cursor: pointer;
 }
@@ -186,25 +186,33 @@ header button {
   gap: 12px;
   font-size: 11px;
   color: #666;
+  line-height: 1;
 }
 
 .suggestionYear {
   color: #888;
+  line-height: 1;
 }
 
-.suggestionRating {
+.suggestionRating,
+.suggestionVotes {
   display: flex;
   align-items: center;
-  gap: 4px;
   color: #666;
+  line-height: 1;
 }
 
-.suggestionRating i {
+.suggestionRating i,
+.suggestionVotes i {
   color: #ffd700;
   border: none;
-  padding: 0;
+  padding: 12px 5px;
   font-size: 10px;
-  margin-top: 30px;
+  line-height: 1;
+}
+
+.suggestionVotes i {
+  color: #007bff;
 }
 
 .noResults {
@@ -212,105 +220,6 @@ header button {
   text-align: center;
   color: #666;
   font-size: 13px;
-}
-
-.searchBarMobile {
-  background-color: white;
-  height: 30px;
-  width: 90%;
-  overflow: hidden;
-  border: none;
-  border-radius: 20px;
-  outline: none;
-  position: relative;
-  display: flex;
-  margin: 20px auto;
-  margin-top: 50px;
-}
-
-/* .searchContainer input, */
-.searchBarMobile input {
-  height: 100%;
-  width: 85%;
-  padding: 0 20px;
-  border: none;
-  position: absolute;
-  outline: none;
-  font-size: 22px;
-  color: rgb(44, 44, 44);
-}
-
-.searchBarMobile input {
-  font-size: 14px;
-  padding: 0 10px;
-}
-
-.searchBarMobile i {
-  color: black;
-  cursor: pointer;
-  position: absolute;
-  right: 0;
-  top: 10px;
-  font-size: 20px;
-  background-color: rgb(236, 233, 221);
-}
-
-.searchBarMobile i {
-  font-size: 14px;
-  top: -3px;
-  background-color: white;
-  right: -12px;
-}
-
-/* Mobile Search Suggestions */
-.searchBarMobile {
-  position: relative;
-}
-
-.searchSuggestionsMobile {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  max-height: 250px;
-  overflow-y: auto;
-  z-index: 1000;
-  margin-top: 5px;
-  width: 100%;
-  border: 1px solid #e0e0e0;
-}
-
-/* Mobile responsive styles for suggestions */
-@media only screen and (max-width: 1024px) {
-  .searchSuggestions {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 350px;
-    max-height: 50vh;
-  }
-  
-  .suggestionContent {
-    padding: 10px 12px;
-  }
-  
-  .suggestionImage img {
-    width: 45px;
-    height: 68px;
-  }
-  
-  .suggestionDetails h4 {
-    font-size: 14px;
-  }
-  
-  .suggestionMeta {
-    font-size: 12px;
-  }
 }
 
 .active {
@@ -406,8 +315,18 @@ header button {
 }
 
 @media only screen and (max-width: 1024px) {
-  header nav .flexSB, .searchContainer{
+  header nav .flexSB,
+  .searchContainer {
     display: none;
+  }
+
+  .mobileSearchIcon {
+    display: block !important;
+    position: absolute;
+    right: 80px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
   }
 
   .toggle {
@@ -446,15 +365,6 @@ header button {
     margin-top: -35px;
     margin-bottom: 20px;
   }
-  
-  /* Ensure mobile search suggestions are visible */
-  .searchBarMobile {
-    z-index: 1001;
-  }
-  
-  .searchSuggestionsMobile {
-    z-index: 1002;
-  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -471,27 +381,21 @@ header button {
     padding-bottom: 70px;
   }
   
-  /* Mobile search suggestions adjustments */
-  .searchSuggestionsMobile {
-    max-height: 200px;
+  /* Mobile search adjustments */
+  .mobileSearchBar {
+    padding: 10px;
   }
   
-  .suggestionContent {
-    padding: 6px 10px;
+  .mobileSearchInput {
+    height: 40px;
   }
   
-  .suggestionImage img {
-    width: 35px;
-    height: 52px;
+  .mobileSearchInput input {
+    font-size: 14px;
   }
   
-  .suggestionDetails h4 {
-    font-size: 12px;
-  }
-  
-  .suggestionMeta {
-    font-size: 10px;
-    gap: 8px;
+  .mobileSearchSuggestions {
+    max-height: 250px;
   }
 }
 
@@ -570,4 +474,92 @@ header button {
   .dropDownBoxSeries {
     top: 6vh;
   }
+}
+
+/* Mobile Search Icon */
+.mobileSearchIcon {
+  display: none;
+  position: absolute;
+  right: 80px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+}
+
+header {
+  position: relative;
+}
+
+.navContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mobileSearchIcon i {
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.mobileSearchIcon i:hover {
+  background-color: #e9232d;
+  border-color: #e9232d;
+}
+
+/* Mobile Search Bar */
+.mobileSearchBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.95);
+  padding: 15px;
+  z-index: 1003;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mobileSearchInput {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 25px;
+  padding: 0 15px;
+  height: 45px;
+}
+
+.mobileSearchInput input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background: transparent;
+}
+
+.mobileSearchInput i {
+  color: #333;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  font-size: 18px;
+}
+
+.mobileSearchSuggestions {
+  background: black;
+  border-radius: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #333;
 }

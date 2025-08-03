@@ -60,8 +60,8 @@ const HomePages = () => {
     <>
       <div style={{ display: loading ? "none" : "block" }}>
         <Homes movies={movies} />
-        <Playing playingItems={playingMovies} />
-        <Upcoming items={upcomingMovies} title={"Upcoming Movies"} />
+        <Playing upcomingItems={upcomingMovies} />
+        <Upcoming items={playingMovies} title={"Movies Playing Now"} />
         <Upcoming items={topMovies} title={"Top Rated Movies"} />
         <Upcoming items={topSeries} title={"Top Rated Series"} />
         <Upcoming items={recommendedMovies} title={"Recommended Movies"} />

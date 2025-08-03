@@ -9,7 +9,8 @@ import logo from "../../images/logo.jpg";
 const Header = () => {
   const [Mobile, setMobile] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  const [showSearchBar, setShowSearchBar] = useState(true);
+  const [showSearchBar, setShowSearchBar] = useState(false);
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
@@ -66,9 +67,11 @@ const Header = () => {
   };
 
   const handleSuggestionClick = (suggestion) => {
-    setSearchValue(suggestion.title || suggestion.name);
+    setSearchValue("");
     setShowSuggestions(false);
-    navigate(`/movies/${suggestion.id}/${suggestion.title || suggestion.name}`);
+    setShowMobileSearch(false);
+    setShowSearchBar(false);
+    navigate(`/movies/${suggestion.id}/${suggestion.title}`);
   };
 
   const handleSearchContainerClick = () => {
@@ -76,19 +79,30 @@ const Header = () => {
   };
 
   // Close suggestions when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      const searchContainer = document.querySelector('.searchContainer');
-      if (searchContainer && !searchContainer.contains(event.target)) {
-        setShowSuggestions(false);
-      }
-    };
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     const searchContainer = document.querySelector(".searchContainer");
+  //     const mobileSearchBar = document.querySelector(".mobileSearchBar");
+  //     const mobileSearchIcon = document.querySelector(".mobileSearchIcon");
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+  //     if (searchContainer && !searchContainer.contains(event.target)) {
+  //       setShowSuggestions(false);
+  //     }
+
+  //     if (
+  //       mobileSearchBar &&
+  //       !mobileSearchBar.contains(event.target) &&
+  //       !mobileSearchIcon?.contains(event.target)
+  //     ) {
+  //       setShowMobileSearch(false);
+  //     }
+  //   };
+
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, []);
 
   const showDropDownMovies = async () => {
     setMouseHoverMovies(true);
@@ -122,73 +136,6 @@ const Header = () => {
             </div>
 
             <ul className={Mobile ? "navMenuList" : "flexSB"}>
-              {Mobile ? (
-                <div className="searchBarMobile">
-                  <input
-                    type="text"
-                    value={searchValue}
-                    onChange={handleSearchInputChange}
-                    onKeyPress={(e) => {
-                      if (e.key === "Enter") {
-                        getSearchValue();
-                      }
-                    }}
-                    placeholder="Search movies and series..."
-                  />
-                  <i className="fa fa-search" onClick={getSearchValue}></i>
-                  
-                  {/* Mobile Search Suggestions */}
-                  {showSuggestions && (
-                    <div className="searchSuggestionsMobile">
-                      {isSearching ? (
-                        <div className="searchingIndicator">
-                          <i className="fa fa-spinner fa-spin"></i>
-                          <span>Searching...</span>
-                        </div>
-                      ) : searchSuggestions.length > 0 ? (
-                        <div className="suggestionsList">
-                          {searchSuggestions.map((suggestion) => (
-                            <div
-                              key={suggestion.id}
-                              className="suggestionItem"
-                              onClick={() => handleSuggestionClick(suggestion)}
-                            >
-                              <div className="suggestionContent">
-                                <div className="suggestionImage">
-                                  <img
-                                    src={`https://image.tmdb.org/t/p/w92${suggestion.poster_path}`}
-                                    alt={suggestion.title || suggestion.name}
-                                    onError={(e) => {
-                                      e.target.src = 'https://via.placeholder.com/92x138?text=No+Image';
-                                    }}
-                                  />
-                                </div>
-                                <div className="suggestionDetails">
-                                  <h4>{suggestion.title || suggestion.name}</h4>
-                                  <div className="suggestionMeta">
-                                    <span className="suggestionYear">
-                                      {suggestion.release_date?.split('-')[0] || suggestion.first_air_date?.split('-')[0] || 'N/A'}
-                                    </span>
-                                    <span className="suggestionRating">
-                                      <i className="fa fa-star"></i>
-                                      {suggestion.vote_average?.toFixed(1) || 'N/A'}
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      ) : searchValue.trim().length >= 2 ? (
-                        <div className="noResults">
-                          <span>No results found</span>
-                        </div>
-                      ) : null}
-                    </div>
-                  )}
-                </div>
-              ) : null}
-
               <Link
                 to="/"
                 onClick={() => {
@@ -306,6 +253,16 @@ const Header = () => {
             </button>
           </nav>
 
+          {/* Mobile Search Icon */}
+          {!Mobile && (
+            <div className="mobileSearchIcon">
+              <i
+                onClick={() => setShowMobileSearch(!showMobileSearch)}
+                className={showMobileSearch ? `fa fa-times` : `fa fa-search`}
+              ></i>
+            </div>
+          )}
+
           <div
             className={`${"dropDownBoxMovies"} ${
               mouseHoverMovies ? "visible" : ""
@@ -354,11 +311,11 @@ const Header = () => {
           <div className="searchContainer" onClick={handleSearchContainerClick}>
             <i
               onClick={() => setShowSearchBar(!showSearchBar)}
-              className={showSearchBar ? `fa fa-search` : `fa fa-times`}
+              className={showSearchBar ? `fa fa-times` : `fa fa-search`}
             ></i>
             <div
               className={`searchInput ${
-                !showSearchBar ? "searchInputVisible" : ""
+                showSearchBar ? "searchInputVisible" : ""
               }`}
             >
               <input
@@ -368,13 +325,15 @@ const Header = () => {
                 onKeyPress={(e) => {
                   if (e.key === "Enter") {
                     getSearchValue();
+                    setShowSuggestions(false);
+                    setShowSearchBar(false);
                   }
                 }}
                 placeholder="Search movies and series..."
               />
               <i className="fa fa-search" onClick={getSearchValue}></i>
             </div>
-            
+
             {/* Search Suggestions Dropdown */}
             {showSuggestions && (
               <div className="searchSuggestions">
@@ -395,21 +354,29 @@ const Header = () => {
                           <div className="suggestionImage">
                             <img
                               src={`https://image.tmdb.org/t/p/w92${suggestion.poster_path}`}
-                              alt={suggestion.title || suggestion.name}
+                              alt={suggestion.title}
                               onError={(e) => {
-                                e.target.src = 'https://via.placeholder.com/92x138?text=No+Image';
+                                e.target.src =
+                                  "https://via.placeholder.com/92x138?text=No+Image";
                               }}
                             />
                           </div>
                           <div className="suggestionDetails">
-                            <h4>{suggestion.title || suggestion.name}</h4>
+                            <h4>{suggestion.title}</h4>
                             <div className="suggestionMeta">
                               <span className="suggestionYear">
-                                {suggestion.release_date?.split('-')[0] || suggestion.first_air_date?.split('-')[0] || 'N/A'}
+                                {suggestion.release_date?.split("-")[0] ||
+                                  suggestion.first_air_date?.split("-")[0] ||
+                                  "N/A"}
                               </span>
                               <span className="suggestionRating">
                                 <i className="fa fa-star"></i>
-                                {suggestion.vote_average?.toFixed(1) || 'N/A'}
+                                {suggestion.vote_average?.toFixed(1) || "N/A"}
+                              </span>
+                              <span className="suggestionVotes">
+                                <i className="fa fa-users"></i>
+                                {suggestion.vote_count?.toLocaleString() ||
+                                  "N/A"}
                               </span>
                             </div>
                           </div>
@@ -427,6 +394,85 @@ const Header = () => {
           </div>
         </div>
       </header>
+
+      {/* Mobile Search Bar */}
+      {showMobileSearch && (
+        <div className="mobileSearchBar">
+          <div className="mobileSearchInput">
+            <input
+              type="text"
+              value={searchValue}
+              onChange={handleSearchInputChange}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  getSearchValue();
+                  setShowSuggestions(false);
+                  setShowMobileSearch(false);
+                }
+              }}
+              placeholder="Search movies and series..."
+            />
+            <i className="fa fa-search" onClick={getSearchValue}></i>
+          </div>
+
+          {/* Mobile Search Suggestions */}
+          {showSuggestions && (
+            <div className="mobileSearchSuggestions">
+              {isSearching ? (
+                <div className="searchingIndicator">
+                  <i className="fa fa-spinner fa-spin"></i>
+                  <span>Searching...</span>
+                </div>
+              ) : searchSuggestions.length > 0 ? (
+                <div className="suggestionsList">
+                  {searchSuggestions.map((suggestion) => (
+                    <div
+                      key={suggestion.id}
+                      className="suggestionItem"
+                      onClick={() => handleSuggestionClick(suggestion)}
+                    >
+                      <div className="suggestionContent">
+                        <div className="suggestionImage">
+                          <img
+                            src={`https://image.tmdb.org/t/p/w92${suggestion.poster_path}`}
+                            alt={suggestion.title}
+                            onError={(e) => {
+                              e.target.src =
+                                "https://via.placeholder.com/92x138?text=No+Image";
+                            }}
+                          />
+                        </div>
+                        <div className="suggestionDetails">
+                          <h4>{suggestion.title}</h4>
+                          <div className="suggestionMeta">
+                            <span className="suggestionYear">
+                              {suggestion.release_date?.split("-")[0] ||
+                                suggestion.first_air_date?.split("-")[0] ||
+                                "N/A"}
+                            </span>
+                            <span className="suggestionRating">
+                              <i className="fa fa-star"></i>
+                              {suggestion.vote_average?.toFixed(1) || "N/A"}
+                            </span>
+                            <span className="suggestionVotes">
+                              <i className="fa fa-users"></i>
+                              {suggestion.vote_count?.toLocaleString() || "N/A"}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : searchValue.trim().length >= 2 ? (
+                <div className="noResults">
+                  <span>No results found</span>
+                </div>
+              ) : null}
+            </div>
+          )}
+        </div>
+      )}
     </>
   );
 };
